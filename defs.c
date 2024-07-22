@@ -29,7 +29,7 @@ struct Vol {
 };
 
 
-// Function to print flight information
+
 void print_flight_info(struct Vol vol) {
     printf("Flight %d: %s to %s\n", vol.num_vol, vol.comp_vol, vol.dest);
 
@@ -42,12 +42,11 @@ void print_flight_info(struct Vol vol) {
 
     printf("\n");
 }
-// Function to parse CSV line and return a struct Vol
+
 struct Vol parse_csv_line(char *line) {
     struct Vol vol;
     char *token = strtok(line, ",");
 
-    // Parsing each field from the CSV line
     vol.num_vol = atoi(token);
     strcpy(vol.comp_vol, strtok(NULL, ","));
     strcpy(vol.dest, strtok(NULL, ","));
@@ -60,7 +59,6 @@ struct Vol parse_csv_line(char *line) {
     vol.h_dec = atoi(strtok(NULL, ","));
     strcpy(vol.etat_vol, strtok(NULL, ","));
 
-    // Parse passenger information and create a linked list
     vol.passagers = NULL;
     char *passenger_data = strtok(NULL, "");
     char *passenger_token = strtok(passenger_data, ";");
@@ -80,7 +78,6 @@ struct Vol parse_csv_line(char *line) {
     return vol;
 }
 
-// Function to read CSV file and populate array of struct Vol
 void read_csv(const char *filename, struct Vol *vols, int *num_vols) {
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
@@ -91,7 +88,6 @@ void read_csv(const char *filename, struct Vol *vols, int *num_vols) {
     char line[1024];
     *num_vols = 0;
 
-    // Read each line of the file
     while (fgets(line, sizeof(line), file) != NULL) {
         vols[*num_vols] = parse_csv_line(line);
         (*num_vols)++;

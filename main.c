@@ -29,14 +29,12 @@ struct Vol {
 };
 
 int main() {
-    const char *filename = "/home/optimo911/CLionProjects/untitled/data_vols.csv"; // Replace with your file name
-    struct Vol vols[100]; // Adjust the size accordingly
+    const char *filename = "../data_vols.csv";
+    struct Vol vols[100];
     int num_vols;
 
-    // Read CSV and populate array of struct Vol
     read_csv(filename, vols, &num_vols);
 
-    // Print the sorted and filtered flight information
     for (int i = 0; i < num_vols; i++) {
         print_flight_info(vols[i]);
     }
